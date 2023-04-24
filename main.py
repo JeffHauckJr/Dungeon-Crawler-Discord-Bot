@@ -1,5 +1,25 @@
 import random
 import time
+import discord
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+client = discord.Client(intents=intents)
+
+@client.event
+async def on_ready():
+    print(f'We have logged in as {client.user}')
+
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+
+    if message.content.startswith('!hello'):
+        await message.channel.send('Hello!')
+
+client.run('MTA5ODc0NzY2MzIzMjU1MzAwMQ.G-stOF.rZD7PQUUz20fzivvQOebzhk7ZgfN6TfXnb9K1w')
 
 
 class Challenger:
